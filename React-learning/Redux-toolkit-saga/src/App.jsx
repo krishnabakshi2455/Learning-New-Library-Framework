@@ -1,35 +1,38 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+// 4. Triggering the Saga
+// In your component, dispatch the action to start the saga and display the data:
+const CountryList = () => {
+  const dispatch = useDispatch();
+  const countries = useSelector(state => state.country.countries);
+  const loading = useSelector(state => state.country.loading);
+  const error = useSelector(state => state.country.error);
 
-function App() {
-  const [count, setCount] = useState(0)
+  useEffect(() => {
+    dispatch({ type: 'country/fetchCountries' });
+  }, [dispatch]);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div>
+      {loading && <p>Loading...</p>}
+      {error && <p>Error: {error}</p>}
+      <ul>
+        {countries.map(country => (
+          <>
+          <li key={country.cca3}>{country.name.common}</li>
+            <img src={country.flags.png} alt="" key={country.cca3}/>
+          </>
+        ))}
+      </ul>
+    </div>
+  );
+};
 
-export default App
+export default CountryList;
+// This component uses the useSelector hook to access the state and map through the countries array to display each country's name.
+
+// Summary:
+// Redux Toolkit: Simplifies creating slices of state.
+// Redux Saga: Manages side effects like API calls.
+//   Example: Fetch and display country data from the restcountries.com API.
+// The final output will be a list of country names fetched from the API and displayed in your component.
