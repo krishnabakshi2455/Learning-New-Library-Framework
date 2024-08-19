@@ -10,8 +10,7 @@ const store = configureStore({
     reducer: {
         country: countryReducer,
     },
-    middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware({ thunk: false }).concat(sagaMiddleware),
+    middleware: (getDefaultMiddleware) =>  getDefaultMiddleware().concat(sagaMiddleware),
 });
 
 sagaMiddleware.run(watchFetchCountries);

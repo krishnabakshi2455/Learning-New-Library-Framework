@@ -23,11 +23,7 @@ const countrySlice = createSlice({
     },
 });
 
-export const {
-    fetchCountriesStart,
-    fetchCountriesSuccess,
-    fetchCountriesFailure,
-} = countrySlice.actions;
+export const { fetchCountriesStart, fetchCountriesSuccess, fetchCountriesFailure, } = countrySlice.actions;
 
 export default countrySlice.reducer;
 

@@ -6,6 +6,7 @@ import { fetchCountriesStart, fetchCountriesSuccess, fetchCountriesFailure } fro
 
 function* fetchCountriesSaga() {
     try {
+        // throw new error("some error")
         yield put(fetchCountriesStart());
         const response = yield call(fetch, 'https://restcountries.com/v3.1/all');
         const data = yield response.json();

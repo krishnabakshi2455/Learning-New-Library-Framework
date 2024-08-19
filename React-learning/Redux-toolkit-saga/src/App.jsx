@@ -17,10 +17,10 @@ const CountryList = () => {
       {loading && <p>Loading...</p>}
       {error && <p>Error: {error}</p>}
       <ul>
-        {countries.map(country => (
+        {countries.map((country,index) => (
           <>
           <li key={country.cca3}>{country.name.common}</li>
-            <img src={country.flags.png} alt="" key={country.cca3}/>
+            <img src={country.flags.png} alt="" key={index}/>
           </>
         ))}
       </ul>
