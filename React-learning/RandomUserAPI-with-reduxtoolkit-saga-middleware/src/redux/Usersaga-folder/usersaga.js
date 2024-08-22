@@ -9,7 +9,6 @@ function* fetchUsersSaga(){
         yield put(fetchUserSuccess(data.results))
         // console.log(data);
         
-        
     }catch(error){
         yield put(fetchUserFailure(error))
     }
