@@ -1,9 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 
-
-
-
 const CountrySLice = createSlice({
     name: "Country_SLice",
     initialState: {
